@@ -1,0 +1,87 @@
+<h1>Total credits: {{ total_credits }}</h1>
+<h1>Spotlight caches obtained: {{ spotlight_caches }}</h1>
+<h3>
+  Day(s) away: {{ days_away }}, Week(s) away: {{ weeks_away }}, Season(s) away:
+  {{ seasons_away }}, Predicted CL: {{ cl_away }}
+</h3>
+<h3>Collection</h3>
+<form [formGroup]="options">
+  <div class="mat-form-field">
+    <mat-form-field color="accent" required>
+      <mat-label>Prediction date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker"
+        placeholder="Choose a date"
+        (dateInput)="calculateDaysAway($event)"
+        (dateChange)="calculateDaysAway($event)"
+        formControlName="predictionDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Week in the season</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Ex. 1 - 5"
+        [(ngModel)]="current_week"
+        (ngModelChange)="setCurrentWeek($event)"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </mat-form-field>
+  </div>
+  <div class="mat-form-field">
+    <mat-form-field>
+      <mat-label>Current Collection level</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Ex. 0"
+        [(ngModel)]="current_cl"
+        (ngModelChange)="setCurrentCollectionLevel($event)"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Current Credits</mat-label>
+      <input
+        type="number"
+        matInput
+        placeholder="Ex. 0"
+        [(ngModel)]="current_credits"
+        (ngModelChange)="setCurrentCredits($event)"
+        [ngModelOptions]="{ standalone: true }"
+      />
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-checkbox (change)="setDaily($event.checked)" [checked]="daily"
+      >Daily Quests (500 Credits/Day)</mat-checkbox
+    >
+  </div>
+  <div>
+    <mat-checkbox (change)="setWeekend($event.checked)" [checked]="weekend"
+      >Weekend Challenge (200 Credits/Week)</mat-checkbox
+    >
+  </div>
+  <div>
+    <mat-checkbox (change)="setWeekly($event.checked)" [checked]="weekly"
+      >Weekly Rewards (1350 Credits/Week)</mat-checkbox
+    >
+  </div>
+
+  <div>
+    <mat-checkbox (change)="setSeason($event.checked)" [checked]="season"
+      >Season Rewards (2300 Credits WIP)</mat-checkbox
+    >
+  </div>
+
+  <div>
+    <mat-checkbox (change)="setConquest($event.checked)" [checked]="conquest"
+      >Conquest Rewards (900 Credits WIP)</mat-checkbox
+    >
+  </div>
+</form>

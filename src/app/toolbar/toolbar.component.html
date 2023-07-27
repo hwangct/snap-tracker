@@ -1,0 +1,13 @@
+<mat-toolbar role="banner" class="toolbar" color="primary">
+  <a [routerLink]="['/']">
+    <span>Marvel Snap Tracker</span>
+  </a>
+  <div class="spacer"></div>
+  <button mat-button [matMenuTriggerFor]="menu">
+    <mat-icon>event</mat-icon>
+  </button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item>Link 1</button>
+    <button mat-menu-item>Link 2</button>
+  </mat-menu>
+</mat-toolbar>
